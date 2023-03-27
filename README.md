@@ -11,4 +11,4 @@ Version 1 (27.03.2023):
 - Dear ImGui
 
 ## Latest version screenshots
-![cap 1](https://https://github.com/combo-wombo/PhysicsSandbox-ImGui/blob/main/Screenshots/1.jpg?raw=true)
+![cap 1](https://github.com/combo-wombo/PhysicsSandbox-ImGui/blob/main/Screenshots/1.jpg?raw=true)
