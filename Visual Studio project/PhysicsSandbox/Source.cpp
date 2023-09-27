@@ -1,9 +1,9 @@
 #include <Windows.h>
 #include <dwmapi.h>
 #include <d3d11.h>
-#include "../imgui/imgui.h"
-#include "../imgui/imgui_impl_dx11.h"
-#include "../imgui/imgui_impl_win32.h"
+#include "imgui/imgui.h"
+#include "imgui/imgui_impl_dx11.h"
+#include "imgui/imgui_impl_win32.h"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -165,9 +165,6 @@ INT APIENTRY WinMain(HINSTANCE instance, HINSTANCE, PSTR, INT cmd_show) {
 	gameBox.bottom = windowRect.bottom - windowRect.top - (GetSystemMetrics(SM_CYFRAME) * 2 + GetSystemMetrics(SM_CYCAPTION) + GetSystemMetrics(SM_CXPADDEDBORDER) * 2);
 	globalContainer.setBoundingBox(gameBox);
 
-	ImGuiIO& io = ImGui::GetIO();
-	ImFont* f_minecraftia = io.Fonts->AddFontFromFileTTF("font/Minecraftia.ttf", 15);
-
 	while (running) {
 		MSG msg;
 		while (PeekMessage(&msg, nullptr, 0U, 0U, PM_REMOVE)) {
@@ -200,7 +197,6 @@ INT APIENTRY WinMain(HINSTANCE instance, HINSTANCE, PSTR, INT cmd_show) {
 				}
 			}
 		}
-
 		ImGui::Begin("Menu", (bool*)0, ImGuiWindowFlags_NoMove);
 		ImGui::GetStyle().WindowRounding = 10.f;
 		ImGui::GetStyle().WindowBorderSize = 1.f;
