@@ -12,6 +12,8 @@
 #include "PhysicsObject.h"
 #include "PhysicsObjectContainer.h"
 
+using namespace sbox;
+
 int WINDOW_HEIGHT = 800;
 int WINDOW_WIDTH = 1000;
 bool enableGravity = true;
@@ -20,13 +22,14 @@ bool colorizeBallsVelocity = false;
 bool drawCollisionGridData = false;
 bool running = true;
 bool showfps = true;
+
 int COLLISION_STEPS = 20;
 int TICKRATE = 66;
 float magnetStrength = 0.2f;
 double ticksPerSecond = 1.0 / TICKRATE;
 int ticksPerMillisecond = static_cast<int>(ticksPerSecond * 1000);
-float dt = 0;
-float dtReal = 0;
+volatile float dt = 0;
+volatile float dtReal = 0;
 PhysicsObjectContainer globalContainer;
 
 void drawText(ImVec2 pos, float scale, std::string text) {
@@ -47,7 +50,7 @@ void drawFps(ImVec2 pos, float scale) {
 void calculatePhysics() {
 	while (running) {
 		clock_t tStart = clock();
-
+	
 		if (GetAsyncKeyState(0x51))/*Q*/ { globalContainer.addRandomObjectAt(ImGui::GetMousePos(), 5, 2, 10); }
 		if (GetAsyncKeyState(0x45))/*E*/ { globalContainer.addRandomObjectAt(ImGui::GetMousePos(), 10, 10); }
 		if (GetAsyncKeyState(VK_SPACE)) { if (1 / dtReal > 40.f) { globalContainer.addRandomObjectAt({ 15,15 }, 9.f, { 35.f,0.f }); } }
